@@ -260,7 +260,7 @@ function BlogPost() {
         </h1>
         <div style={{ height: 1, background: "#F0D9A8", margin: "32px 0" }} />
         <div style={{ fontSize: 17, lineHeight: 1.75, color: "#2B2010" }}>
-          {post.body.map((block, i) => {
+          {post.body.map((block: Post["body"][number], i: number) => {
             switch (block.type) {
               case "p":
                 return <p key={i} style={{ marginBottom: 20 }}>{block.text}</p>;
