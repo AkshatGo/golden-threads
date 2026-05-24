@@ -279,7 +279,7 @@ function BlogPost() {
               case "ul":
                 return (
                   <ul key={i} style={{ paddingLeft: 22, marginBottom: 20 }}>
-                    {block.items.map((it, j) => (
+                    {block.items.map((it: string, j: number) => (
                       <li key={j} style={{ marginBottom: 8 }}>{it}</li>
                     ))}
                   </ul>
@@ -287,7 +287,7 @@ function BlogPost() {
               case "ol":
                 return (
                   <ol key={i} style={{ paddingLeft: 22, marginBottom: 20 }}>
-                    {block.items.map((it, j) => (
+                    {block.items.map((it: string, j: number) => (
                       <li key={j} style={{ marginBottom: 8 }}>{it}</li>
                     ))}
                   </ol>
