@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import tshirtClassic1 from "@/assets/tshirt-classic-1.jpeg";
+import tshirtClassic2 from "@/assets/tshirt-classic-2.jpeg";
+import tshirtClassic3 from "@/assets/tshirt-classic-3.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -100,6 +103,16 @@ const css = `
 .gh .product-img.sadri { background: linear-gradient(135deg, #D8E8D4, #9EC89A); }
 .gh .product-badge { position: absolute; top: 12px; left: 12px; background: var(--gold); color: white; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 2px; letter-spacing: 0.04em; }
 .gh .product-badge.new { background: var(--accent); }
+.gh .slider { position: absolute; inset: 0; overflow: hidden; }
+.gh .slider-track { display: flex; height: 100%; width: 100%; transition: transform 0.5s ease; }
+.gh .slider-img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; }
+.gh .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 18px; line-height: 1; cursor: pointer; color: var(--ink); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+.gh .product-card:hover .slider-arrow { opacity: 1; }
+.gh .slider-arrow.left { left: 8px; }
+.gh .slider-arrow.right { right: 8px; }
+.gh .slider-dots { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+.gh .slider-dot { width: 6px; height: 6px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); padding: 0; cursor: pointer; }
+.gh .slider-dot.active { background: var(--gold); width: 18px; border-radius: 3px; }
 .gh .wishlist-btn { position: absolute; top: 12px; right: 12px; background: white; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 .gh .product-info { padding: 16px; }
 .gh .product-cat { font-size: 11px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
@@ -219,6 +232,7 @@ type Product = {
   sizes: string[];
   badge?: string;
   badgeType?: "new" | "sale";
+  images?: string[];
 };
 
 const products: Product[] = [
@@ -226,11 +240,35 @@ const products: Product[] = [
   { id: 2, name: "Single Bed Cozy Blanket", cat: "blanket", catLabel: "Blankets", icon: "🛏️", price: 735, sizes: ["Single"], badge: "Bestseller" },
   { id: 3, name: "Premium Athletic Tracksuit", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1312, original: 1599, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new" },
   { id: 4, name: "Sports Performance Set", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1499, sizes: ["M", "L", "XL", "XXL"] },
-  { id: 5, name: "Classic Cotton T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 472, original: 599, sizes: ["S", "M", "L", "XL"], badge: "-21%", badgeType: "sale" },
+  { id: 5, name: "Classic Cotton T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 472, original: 599, sizes: ["S", "M", "L", "XL"], badge: "-21%", badgeType: "sale", images: [tshirtClassic1, tshirtClassic2, tshirtClassic3] },
   { id: 6, name: "Premium Polo T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 649, sizes: ["M", "L", "XL"] },
   { id: 7, name: "Woolen Sadri Vest", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 735, sizes: ["M", "L", "XL"], badge: "New", badgeType: "new" },
   { id: 8, name: "Traditional Sadri Jacket", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 899, sizes: ["L", "XL", "XXL"] },
 ];
+
+function ProductSlider({ images, alt }: { images: string[]; alt: string }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((x) => (x + 1) % images.length), 2800);
+    return () => clearInterval(t);
+  }, [images.length]);
+  return (
+    <div className="slider">
+      <div className="slider-track" style={{ transform: `translateX(-${i * 100}%)` }}>
+        {images.map((src, idx) => (
+          <img key={idx} src={src} alt={`${alt} view ${idx + 1}`} className="slider-img" />
+        ))}
+      </div>
+      <button className="slider-arrow left" onClick={(e) => { e.stopPropagation(); setI((x) => (x - 1 + images.length) % images.length); }} aria-label="Previous">‹</button>
+      <button className="slider-arrow right" onClick={(e) => { e.stopPropagation(); setI((x) => (x + 1) % images.length); }} aria-label="Next">›</button>
+      <div className="slider-dots">
+        {images.map((_, idx) => (
+          <button key={idx} className={`slider-dot ${idx === i ? "active" : ""}`} onClick={(e) => { e.stopPropagation(); setI(idx); }} aria-label={`Slide ${idx + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Index() {
   const [activeCat, setActiveCat] = useState<string>("all");
@@ -359,7 +397,7 @@ function Index() {
                 <div className={`product-img ${p.cat}`}>
                   {p.badge && <span className={`product-badge ${p.badgeType === "new" ? "new" : ""}`}>{p.badge}</span>}
                   <button className="wishlist-btn" onClick={(e) => { e.stopPropagation(); showToast("Added to wishlist ♥"); }}>♡</button>
-                  {p.icon}
+                  {p.images ? <ProductSlider images={p.images} alt={p.name} /> : p.icon}
                 </div>
                 <div className="product-info">
                   <div className="product-cat">{p.catLabel}</div>
