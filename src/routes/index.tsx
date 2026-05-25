@@ -486,27 +486,8 @@ function Index() {
           </div>
         </div>
 
-        <div id="testimonials" className="testimonials">
-          <div className="test-inner">
-            <div className="section-label">Customer Reviews</div>
-            <h2 className="section-title">What Our Customers Say</h2>
-            <div className="test-grid">
-              {[
-                ["The blankets are incredibly warm. Ordered for the whole family and everyone loves them. Delivery was fast too!", "AK", "Ankit Kumar", "★★★★★"],
-                ["Great quality tracksuits at an unbeatable price. I'm a Gold member now and the loyalty perks are amazing.", "PS", "Priya Singh", "★★★★★"],
-                ["Ordered in bulk for our sports club. The team was very helpful and the quality of the T-shirts is excellent.", "RV", "Rohit Verma", "★★★★☆"],
-              ].map(([t, a, n, s]) => (
-                <div key={n} className="test-card">
-                  <p className="test-text">{t}</p>
-                  <div className="test-author">
-                    <div className="test-avatar">{a}</div>
-                    <div><div className="test-name">{n}</div><div className="test-stars">{s}</div></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
+
 
         <div className="newsletter">
           <div className="newsletter-inner">
