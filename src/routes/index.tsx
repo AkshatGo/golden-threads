@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import tshirtClassic1 from "@/assets/tshirt-classic-1.jpeg";
 import tshirtClassic2 from "@/assets/tshirt-classic-2.jpeg";
 import tshirtClassic3 from "@/assets/tshirt-classic-3.jpeg";
+import tshirtSummer1 from "@/assets/tshirt-summer-1.jpeg";
+import tshirtSummer2 from "@/assets/tshirt-summer-2.jpeg";
+import tshirtSummer3 from "@/assets/tshirt-summer-3.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -241,6 +244,7 @@ const products: Product[] = [
   { id: 3, name: "Premium Athletic Tracksuit", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1312, original: 1599, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new" },
   { id: 4, name: "Sports Performance Set", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1499, sizes: ["M", "L", "XL", "XXL"] },
   { id: 5, name: "Classic Cotton T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 472, original: 599, sizes: ["S", "M", "L", "XL"], badge: "-21%", badgeType: "sale", images: [tshirtClassic1, tshirtClassic2, tshirtClassic3] },
+  { id: 9, name: "Summer Tshirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 499, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new", images: [tshirtSummer1, tshirtSummer2, tshirtSummer3] },
   { id: 6, name: "Premium Polo T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 649, sizes: ["M", "L", "XL"] },
   { id: 7, name: "Woolen Sadri Vest", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 735, sizes: ["M", "L", "XL"], badge: "New", badgeType: "new" },
   { id: 8, name: "Traditional Sadri Jacket", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 899, sizes: ["L", "XL", "XXL"] },
