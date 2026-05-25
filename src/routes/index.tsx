@@ -222,6 +222,7 @@ type Product = {
   sizes: string[];
   badge?: string;
   badgeType?: "new" | "sale";
+  images?: string[];
 };
 
 const products: Product[] = [
@@ -229,11 +230,35 @@ const products: Product[] = [
   { id: 2, name: "Single Bed Cozy Blanket", cat: "blanket", catLabel: "Blankets", icon: "🛏️", price: 735, sizes: ["Single"], badge: "Bestseller" },
   { id: 3, name: "Premium Athletic Tracksuit", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1312, original: 1599, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new" },
   { id: 4, name: "Sports Performance Set", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1499, sizes: ["M", "L", "XL", "XXL"] },
-  { id: 5, name: "Classic Cotton T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 472, original: 599, sizes: ["S", "M", "L", "XL"], badge: "-21%", badgeType: "sale" },
+  { id: 5, name: "Classic Cotton T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 472, original: 599, sizes: ["S", "M", "L", "XL"], badge: "-21%", badgeType: "sale", images: [tshirtClassic1, tshirtClassic2, tshirtClassic3] },
   { id: 6, name: "Premium Polo T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 649, sizes: ["M", "L", "XL"] },
   { id: 7, name: "Woolen Sadri Vest", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 735, sizes: ["M", "L", "XL"], badge: "New", badgeType: "new" },
   { id: 8, name: "Traditional Sadri Jacket", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 899, sizes: ["L", "XL", "XXL"] },
 ];
+
+function ProductSlider({ images, alt }: { images: string[]; alt: string }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((x) => (x + 1) % images.length), 2800);
+    return () => clearInterval(t);
+  }, [images.length]);
+  return (
+    <div className="slider">
+      <div className="slider-track" style={{ transform: `translateX(-${i * 100}%)` }}>
+        {images.map((src, idx) => (
+          <img key={idx} src={src} alt={`${alt} view ${idx + 1}`} className="slider-img" />
+        ))}
+      </div>
+      <button className="slider-arrow left" onClick={(e) => { e.stopPropagation(); setI((x) => (x - 1 + images.length) % images.length); }} aria-label="Previous">‹</button>
+      <button className="slider-arrow right" onClick={(e) => { e.stopPropagation(); setI((x) => (x + 1) % images.length); }} aria-label="Next">›</button>
+      <div className="slider-dots">
+        {images.map((_, idx) => (
+          <button key={idx} className={`slider-dot ${idx === i ? "active" : ""}`} onClick={(e) => { e.stopPropagation(); setI(idx); }} aria-label={`Slide ${idx + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function Index() {
   const [activeCat, setActiveCat] = useState<string>("all");
