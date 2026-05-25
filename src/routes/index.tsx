@@ -271,6 +271,60 @@ function ProductSlider({ images, alt }: { images: string[]; alt: string }) {
   );
 }
 
+const heroSlides = [
+  {
+    badge: "Limited Time",
+    title: "SUMMER SALES",
+    subtitle: "Up to 50% off on all summer essentials",
+    desc: "Refresh your wardrobe with breezy cotton tees, vibrant colours, and unbeatable prices. Hurry — offers end soon.",
+    cta: "Shop the Sale",
+    bg: "linear-gradient(135deg, #FFB3C8 0%, #F4A6BD 45%, #C77491 100%)",
+    emoji: "☀️",
+  },
+  {
+    badge: "Just Dropped",
+    title: "BUY OUR NEW GENZ COLLECTION",
+    subtitle: "Bold prints. Loud colours. Pure attitude.",
+    desc: "Designed for the next generation — oversized fits, statement graphics, and unapologetic style. Wear it loud.",
+    cta: "Explore GenZ",
+    bg: "linear-gradient(135deg, #0E0A0C 0%, #2A1722 55%, #F4A6BD 130%)",
+    emoji: "🔥",
+  },
+];
+
+function HeroAdSlider() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((x) => (x + 1) % heroSlides.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div className="hero-slider">
+      <div className="hero-slider-track" style={{ transform: `translateX(-${i * 100}%)` }}>
+        {heroSlides.map((s, idx) => (
+          <div key={idx} className="hero-slide" style={{ background: s.bg }}>
+            <div className="hero-slide-inner">
+              <span className="hero-slide-badge">{s.badge}</span>
+              <h1 className="hero-slide-title">{s.title}</h1>
+              <p className="hero-slide-sub">{s.subtitle}</p>
+              <p className="hero-slide-desc">{s.desc}</p>
+              <a href="#catalogue" className="hero-slide-cta">{s.cta} →</a>
+            </div>
+            <div className="hero-slide-emoji">{s.emoji}</div>
+          </div>
+        ))}
+      </div>
+      <button className="hero-slider-arrow left" onClick={() => setI((x) => (x - 1 + heroSlides.length) % heroSlides.length)} aria-label="Previous">‹</button>
+      <button className="hero-slider-arrow right" onClick={() => setI((x) => (x + 1) % heroSlides.length)} aria-label="Next">›</button>
+      <div className="hero-slider-dots">
+        {heroSlides.map((_, idx) => (
+          <button key={idx} className={`hero-slider-dot ${idx === i ? "active" : ""}`} onClick={() => setI(idx)} aria-label={`Slide ${idx + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   const [activeCat, setActiveCat] = useState<string>("all");
   const [sort, setSort] = useState("default");
