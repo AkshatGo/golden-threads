@@ -313,40 +313,25 @@ function Index() {
               <li><a href="#catalogue">Catalogue</a></li>
               <li><a href="#loyalty">Loyalty</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="#testimonials">Reviews</a></li>
             </ul>
             <div className="nav-actions">
               <button className="btn-loyalty" onClick={() => setModalOpen(true)}>🏅 My Points</button>
+              <button
+                className="notif-icon"
+                onClick={() => showToast("You have 3 new notifications")}
+                aria-label="Notifications"
+              >
+                🔔<span className="notif-badge">3</span>
+              </button>
               <div className="cart-icon">🛒<span className="cart-badge">{cartCount}</span></div>
             </div>
           </div>
         </nav>
 
-        <header className="hero">
-          <div className="hero-pattern" />
-          <div className="hero-inner">
-            <div>
-              <span className="hero-badge">Est. Etawah, Uttar Pradesh</span>
-              <h1>Wear the <em>Thread</em> of Quality</h1>
-              <p>Premium hosiery, tracksuits, blankets, and apparel — crafted for comfort, designed for life. Trusted by thousands across India.</p>
-              <div className="hero-cta">
-                <a href="#catalogue" className="btn-primary" style={{ textDecoration: "none", display: "inline-block" }}>Shop Collection</a>
-                <button className="btn-outline" onClick={() => setModalOpen(true)}>Join Loyalty Club</button>
-              </div>
-              <div className="hero-stats">
-                <div className="stat"><div className="stat-num">5000+</div><div className="stat-label">Happy Customers</div></div>
-                <div className="stat"><div className="stat-num">100+</div><div className="stat-label">Products</div></div>
-                <div className="stat"><div className="stat-num">3+</div><div className="stat-label">Years Trusted</div></div>
-              </div>
-            </div>
-            <div className="hero-visual">
-              <div className="hero-card"><div className="hero-card-icon">🛏️</div><h3>Blankets</h3><p>Warm & cozy</p><div className="price">From ₹735</div></div>
-              <div className="hero-card"><div className="hero-card-icon">🏃</div><h3>Tracksuits</h3><p>Athletic wear</p><div className="price">From ₹1,312</div></div>
-              <div className="hero-card"><div className="hero-card-icon">👕</div><h3>T-Shirts</h3><p>Daily essentials</p><div className="price">From ₹472</div></div>
-              <div className="hero-card"><div className="hero-card-icon">🧥</div><h3>Sadri</h3><p>Woolen comfort</p><div className="price">From ₹735</div></div>
-            </div>
-          </div>
+        <header className="hero-slider-section">
+          <HeroAdSlider />
         </header>
+
 
         <div className="loyalty-strip">
           <div className="loyalty-inner">
