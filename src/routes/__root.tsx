@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Global Hosiery" },
+      { name: "description", content: "Golden Threads is an e-commerce platform for premium hosiery and apparel." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Global Hosiery" },
+      { property: "og:description", content: "Golden Threads is an e-commerce platform for premium hosiery and apparel." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Global Hosiery" },
+      { name: "twitter:description", content: "Golden Threads is an e-commerce platform for premium hosiery and apparel." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6628397d-13ff-432c-a87d-d74e25ae9536/id-preview-3e28def1--100f0641-5f5b-42c2-8f5b-213d32c08de9.lovable.app-1779700657699.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6628397d-13ff-432c-a87d-d74e25ae9536/id-preview-3e28def1--100f0641-5f5b-42c2-8f5b-213d32c08de9.lovable.app-1779700657699.png" },
     ],
     links: [
       {
