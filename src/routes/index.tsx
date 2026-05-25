@@ -225,6 +225,35 @@ const css = `
   .gh .footer-grid { grid-template-columns: 1fr 1fr; }
   .gh .loyalty-inner { justify-content: center; text-align: center; }
 }
+.gh .notif-icon { position: relative; background: var(--cream); border: 1px solid var(--gold-light); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.gh .notif-icon:hover { background: var(--gold-light); border-color: var(--gold); }
+.gh .notif-badge { position: absolute; top: -4px; right: -4px; background: var(--gold-dark); color: var(--white); border-radius: 50%; min-width: 18px; height: 18px; padding: 0 5px; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.gh .hero-slider-section { padding: 0; max-width: none; }
+.gh .hero-slider { position: relative; width: 100%; height: 92vh; min-height: 520px; overflow: hidden; }
+.gh .hero-slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1); }
+.gh .hero-slide { flex: 0 0 100%; height: 100%; position: relative; display: flex; align-items: center; overflow: hidden; }
+.gh .hero-slide-inner { max-width: 1200px; margin: auto; padding: 0 64px; width: 100%; position: relative; z-index: 2; }
+.gh .hero-slide-badge { display: inline-block; background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.35); color: var(--white); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 18px; border-radius: 30px; margin-bottom: 24px; font-weight: 500; }
+.gh .hero-slide-title { font-family: 'Playfair Display', serif; font-size: clamp(40px, 7vw, 86px); font-weight: 700; color: var(--white); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; text-shadow: 0 4px 30px rgba(0,0,0,0.25); }
+.gh .hero-slide-sub { font-size: clamp(16px, 1.8vw, 22px); color: rgba(255,255,255,0.95); margin-bottom: 14px; font-weight: 500; }
+.gh .hero-slide-desc { color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+.gh .hero-slide-cta { display: inline-block; background: var(--white); color: var(--ink); padding: 16px 36px; border-radius: 4px; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; text-decoration: none; transition: all 0.25s; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.gh .hero-slide-cta:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+.gh .hero-slide-emoji { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); font-size: clamp(160px, 24vw, 320px); opacity: 0.22; line-height: 1; pointer-events: none; filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2)); }
+.gh .hero-slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; line-height: 1; color: var(--white); cursor: pointer; z-index: 3; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.gh .hero-slider-arrow:hover { background: var(--white); color: var(--ink); }
+.gh .hero-slider-arrow.left { left: 24px; }
+.gh .hero-slider-arrow.right { right: 24px; }
+.gh .hero-slider-dots { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 3; }
+.gh .hero-slider-dot { width: 10px; height: 10px; border-radius: 50%; border: none; background: rgba(255,255,255,0.45); cursor: pointer; padding: 0; transition: all 0.3s; }
+.gh .hero-slider-dot.active { background: var(--white); width: 32px; border-radius: 5px; }
+@media (max-width: 768px) {
+  .gh .hero-slide-inner { padding: 0 28px; }
+  .gh .hero-slide-emoji { opacity: 0.12; right: -10%; }
+  .gh .hero-slider-arrow { width: 38px; height: 38px; font-size: 20px; }
+  .gh .hero-slider-arrow.left { left: 10px; }
+  .gh .hero-slider-arrow.right { right: 10px; }
+}
 `;
 
 type Product = {
