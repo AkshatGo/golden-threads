@@ -103,6 +103,16 @@ const css = `
 .gh .product-img.sadri { background: linear-gradient(135deg, #D8E8D4, #9EC89A); }
 .gh .product-badge { position: absolute; top: 12px; left: 12px; background: var(--gold); color: white; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 2px; letter-spacing: 0.04em; }
 .gh .product-badge.new { background: var(--accent); }
+.gh .slider { position: absolute; inset: 0; overflow: hidden; }
+.gh .slider-track { display: flex; height: 100%; width: 100%; transition: transform 0.5s ease; }
+.gh .slider-img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; }
+.gh .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.85); border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 18px; line-height: 1; cursor: pointer; color: var(--ink); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+.gh .product-card:hover .slider-arrow { opacity: 1; }
+.gh .slider-arrow.left { left: 8px; }
+.gh .slider-arrow.right { right: 8px; }
+.gh .slider-dots { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+.gh .slider-dot { width: 6px; height: 6px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); padding: 0; cursor: pointer; }
+.gh .slider-dot.active { background: var(--gold); width: 18px; border-radius: 3px; }
 .gh .wishlist-btn { position: absolute; top: 12px; right: 12px; background: white; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 .gh .product-info { padding: 16px; }
 .gh .product-cat { font-size: 11px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
