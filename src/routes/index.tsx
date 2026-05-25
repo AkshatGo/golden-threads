@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import tshirtClassic1 from "@/assets/tshirt-classic-1.jpeg";
+import tshirtClassic2 from "@/assets/tshirt-classic-2.jpeg";
+import tshirtClassic3 from "@/assets/tshirt-classic-3.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
