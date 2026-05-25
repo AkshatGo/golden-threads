@@ -387,7 +387,7 @@ function Index() {
                 <div className={`product-img ${p.cat}`}>
                   {p.badge && <span className={`product-badge ${p.badgeType === "new" ? "new" : ""}`}>{p.badge}</span>}
                   <button className="wishlist-btn" onClick={(e) => { e.stopPropagation(); showToast("Added to wishlist ♥"); }}>♡</button>
-                  {p.icon}
+                  {p.images ? <ProductSlider images={p.images} alt={p.name} /> : p.icon}
                 </div>
                 <div className="product-info">
                   <div className="product-cat">{p.catLabel}</div>
