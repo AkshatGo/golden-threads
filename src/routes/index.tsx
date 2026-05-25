@@ -35,9 +35,9 @@ const fontsHref =
 
 const css = `
 :root {
-  --gold: #C8973A; --gold-light: #F0D9A8; --gold-dark: #8B6520;
-  --ink: #1A1208; --cream: #FAF6EF; --warm-gray: #F0EBE0;
-  --muted: #7A6E5F; --white: #FFFFFF; --accent: #2D4A2D; --accent-light: #E8F0E8;
+  --gold: #F4A6BD; --gold-light: #FFD9E4; --gold-dark: #C77491;
+  --ink: #0E0A0C; --cream: #FFF5F8; --warm-gray: #F5E6EC;
+  --muted: #7A6770; --white: #FFFFFF; --accent: #1A1115; --accent-light: #FFE3EC;
 }
 .gh * { margin: 0; padding: 0; box-sizing: border-box; }
 .gh { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
