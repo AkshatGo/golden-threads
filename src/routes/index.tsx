@@ -225,6 +225,35 @@ const css = `
   .gh .footer-grid { grid-template-columns: 1fr 1fr; }
   .gh .loyalty-inner { justify-content: center; text-align: center; }
 }
+.gh .notif-icon { position: relative; background: var(--cream); border: 1px solid var(--gold-light); width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.gh .notif-icon:hover { background: var(--gold-light); border-color: var(--gold); }
+.gh .notif-badge { position: absolute; top: -4px; right: -4px; background: var(--gold-dark); color: var(--white); border-radius: 50%; min-width: 18px; height: 18px; padding: 0 5px; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.gh .hero-slider-section { padding: 0; max-width: none; }
+.gh .hero-slider { position: relative; width: 100%; height: 92vh; min-height: 520px; overflow: hidden; }
+.gh .hero-slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1); }
+.gh .hero-slide { flex: 0 0 100%; height: 100%; position: relative; display: flex; align-items: center; overflow: hidden; }
+.gh .hero-slide-inner { max-width: 1200px; margin: auto; padding: 0 64px; width: 100%; position: relative; z-index: 2; }
+.gh .hero-slide-badge { display: inline-block; background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.35); color: var(--white); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; padding: 8px 18px; border-radius: 30px; margin-bottom: 24px; font-weight: 500; }
+.gh .hero-slide-title { font-family: 'Playfair Display', serif; font-size: clamp(40px, 7vw, 86px); font-weight: 700; color: var(--white); line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; text-shadow: 0 4px 30px rgba(0,0,0,0.25); }
+.gh .hero-slide-sub { font-size: clamp(16px, 1.8vw, 22px); color: rgba(255,255,255,0.95); margin-bottom: 14px; font-weight: 500; }
+.gh .hero-slide-desc { color: rgba(255,255,255,0.78); font-size: 15px; line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+.gh .hero-slide-cta { display: inline-block; background: var(--white); color: var(--ink); padding: 16px 36px; border-radius: 4px; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; text-decoration: none; transition: all 0.25s; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+.gh .hero-slide-cta:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+.gh .hero-slide-emoji { position: absolute; right: 6%; top: 50%; transform: translateY(-50%); font-size: clamp(160px, 24vw, 320px); opacity: 0.22; line-height: 1; pointer-events: none; filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2)); }
+.gh .hero-slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; line-height: 1; color: var(--white); cursor: pointer; z-index: 3; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.gh .hero-slider-arrow:hover { background: var(--white); color: var(--ink); }
+.gh .hero-slider-arrow.left { left: 24px; }
+.gh .hero-slider-arrow.right { right: 24px; }
+.gh .hero-slider-dots { position: absolute; bottom: 30px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 3; }
+.gh .hero-slider-dot { width: 10px; height: 10px; border-radius: 50%; border: none; background: rgba(255,255,255,0.45); cursor: pointer; padding: 0; transition: all 0.3s; }
+.gh .hero-slider-dot.active { background: var(--white); width: 32px; border-radius: 5px; }
+@media (max-width: 768px) {
+  .gh .hero-slide-inner { padding: 0 28px; }
+  .gh .hero-slide-emoji { opacity: 0.12; right: -10%; }
+  .gh .hero-slider-arrow { width: 38px; height: 38px; font-size: 20px; }
+  .gh .hero-slider-arrow.left { left: 10px; }
+  .gh .hero-slider-arrow.right { right: 10px; }
+}
 `;
 
 type Product = {
@@ -242,16 +271,9 @@ type Product = {
 };
 
 const products: Product[] = [
-  { id: 1, name: "Double Bed Warm Blanket", cat: "blanket", catLabel: "Blankets", icon: "🛏️", price: 1299, original: 1599, sizes: ["Double"], badge: "-19%", badgeType: "sale" },
-  { id: 2, name: "Single Bed Cozy Blanket", cat: "blanket", catLabel: "Blankets", icon: "🛏️", price: 735, sizes: ["Single"], badge: "Bestseller" },
-  { id: 3, name: "Premium Athletic Tracksuit", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1312, original: 1599, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new" },
-  { id: 4, name: "Sports Performance Set", cat: "tracksuit", catLabel: "Tracksuits", icon: "🏃", price: 1499, sizes: ["M", "L", "XL", "XXL"] },
   { id: 5, name: "Classic Cotton T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 472, original: 599, sizes: ["S", "M", "L", "XL"], badge: "-21%", badgeType: "sale", images: [tshirtClassic1, tshirtClassic2, tshirtClassic3] },
   { id: 9, name: "Summer Tshirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 499, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new", images: [tshirtSummer1, tshirtSummer2, tshirtSummer3] },
   { id: 10, name: "Icon Tshirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 549, sizes: ["S", "M", "L", "XL"], badge: "New", badgeType: "new", images: [tshirtIcon1, tshirtIcon2, tshirtIcon3] },
-  { id: 6, name: "Premium Polo T-Shirt", cat: "tshirt", catLabel: "T-Shirts", icon: "👕", price: 649, sizes: ["M", "L", "XL"] },
-  { id: 7, name: "Woolen Sadri Vest", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 735, sizes: ["M", "L", "XL"], badge: "New", badgeType: "new" },
-  { id: 8, name: "Traditional Sadri Jacket", cat: "sadri", catLabel: "Sadri", icon: "🧥", price: 899, sizes: ["L", "XL", "XXL"] },
 ];
 
 function ProductSlider({ images, alt }: { images: string[]; alt: string }) {
@@ -272,6 +294,60 @@ function ProductSlider({ images, alt }: { images: string[]; alt: string }) {
       <div className="slider-dots">
         {images.map((_, idx) => (
           <button key={idx} className={`slider-dot ${idx === i ? "active" : ""}`} onClick={(e) => { e.stopPropagation(); setI(idx); }} aria-label={`Slide ${idx + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const heroSlides = [
+  {
+    badge: "Limited Time",
+    title: "SUMMER SALES",
+    subtitle: "Up to 50% off on all summer essentials",
+    desc: "Refresh your wardrobe with breezy cotton tees, vibrant colours, and unbeatable prices. Hurry — offers end soon.",
+    cta: "Shop the Sale",
+    bg: "linear-gradient(135deg, #FFB3C8 0%, #F4A6BD 45%, #C77491 100%)",
+    emoji: "☀️",
+  },
+  {
+    badge: "Just Dropped",
+    title: "BUY OUR NEW GENZ COLLECTION",
+    subtitle: "Bold prints. Loud colours. Pure attitude.",
+    desc: "Designed for the next generation — oversized fits, statement graphics, and unapologetic style. Wear it loud.",
+    cta: "Explore GenZ",
+    bg: "linear-gradient(135deg, #0E0A0C 0%, #2A1722 55%, #F4A6BD 130%)",
+    emoji: "🔥",
+  },
+];
+
+function HeroAdSlider() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((x) => (x + 1) % heroSlides.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <div className="hero-slider">
+      <div className="hero-slider-track" style={{ transform: `translateX(-${i * 100}%)` }}>
+        {heroSlides.map((s, idx) => (
+          <div key={idx} className="hero-slide" style={{ background: s.bg }}>
+            <div className="hero-slide-inner">
+              <span className="hero-slide-badge">{s.badge}</span>
+              <h1 className="hero-slide-title">{s.title}</h1>
+              <p className="hero-slide-sub">{s.subtitle}</p>
+              <p className="hero-slide-desc">{s.desc}</p>
+              <a href="#catalogue" className="hero-slide-cta">{s.cta} →</a>
+            </div>
+            <div className="hero-slide-emoji">{s.emoji}</div>
+          </div>
+        ))}
+      </div>
+      <button className="hero-slider-arrow left" onClick={() => setI((x) => (x - 1 + heroSlides.length) % heroSlides.length)} aria-label="Previous">‹</button>
+      <button className="hero-slider-arrow right" onClick={() => setI((x) => (x + 1) % heroSlides.length)} aria-label="Next">›</button>
+      <div className="hero-slider-dots">
+        {heroSlides.map((_, idx) => (
+          <button key={idx} className={`hero-slider-dot ${idx === i ? "active" : ""}`} onClick={() => setI(idx)} aria-label={`Slide ${idx + 1}`} />
         ))}
       </div>
     </div>
@@ -320,40 +396,25 @@ function Index() {
               <li><a href="#catalogue">Catalogue</a></li>
               <li><a href="#loyalty">Loyalty</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="#testimonials">Reviews</a></li>
             </ul>
             <div className="nav-actions">
               <button className="btn-loyalty" onClick={() => setModalOpen(true)}>🏅 My Points</button>
+              <button
+                className="notif-icon"
+                onClick={() => showToast("You have 3 new notifications")}
+                aria-label="Notifications"
+              >
+                🔔<span className="notif-badge">3</span>
+              </button>
               <div className="cart-icon">🛒<span className="cart-badge">{cartCount}</span></div>
             </div>
           </div>
         </nav>
 
-        <header className="hero">
-          <div className="hero-pattern" />
-          <div className="hero-inner">
-            <div>
-              <span className="hero-badge">Est. Etawah, Uttar Pradesh</span>
-              <h1>Wear the <em>Thread</em> of Quality</h1>
-              <p>Premium hosiery, tracksuits, blankets, and apparel — crafted for comfort, designed for life. Trusted by thousands across India.</p>
-              <div className="hero-cta">
-                <a href="#catalogue" className="btn-primary" style={{ textDecoration: "none", display: "inline-block" }}>Shop Collection</a>
-                <button className="btn-outline" onClick={() => setModalOpen(true)}>Join Loyalty Club</button>
-              </div>
-              <div className="hero-stats">
-                <div className="stat"><div className="stat-num">5000+</div><div className="stat-label">Happy Customers</div></div>
-                <div className="stat"><div className="stat-num">100+</div><div className="stat-label">Products</div></div>
-                <div className="stat"><div className="stat-num">3+</div><div className="stat-label">Years Trusted</div></div>
-              </div>
-            </div>
-            <div className="hero-visual">
-              <div className="hero-card"><div className="hero-card-icon">🛏️</div><h3>Blankets</h3><p>Warm & cozy</p><div className="price">From ₹735</div></div>
-              <div className="hero-card"><div className="hero-card-icon">🏃</div><h3>Tracksuits</h3><p>Athletic wear</p><div className="price">From ₹1,312</div></div>
-              <div className="hero-card"><div className="hero-card-icon">👕</div><h3>T-Shirts</h3><p>Daily essentials</p><div className="price">From ₹472</div></div>
-              <div className="hero-card"><div className="hero-card-icon">🧥</div><h3>Sadri</h3><p>Woolen comfort</p><div className="price">From ₹735</div></div>
-            </div>
-          </div>
+        <header className="hero-slider-section">
+          <HeroAdSlider />
         </header>
+
 
         <div className="loyalty-strip">
           <div className="loyalty-inner">
@@ -508,27 +569,8 @@ function Index() {
           </div>
         </div>
 
-        <div id="testimonials" className="testimonials">
-          <div className="test-inner">
-            <div className="section-label">Customer Reviews</div>
-            <h2 className="section-title">What Our Customers Say</h2>
-            <div className="test-grid">
-              {[
-                ["The blankets are incredibly warm. Ordered for the whole family and everyone loves them. Delivery was fast too!", "AK", "Ankit Kumar", "★★★★★"],
-                ["Great quality tracksuits at an unbeatable price. I'm a Gold member now and the loyalty perks are amazing.", "PS", "Priya Singh", "★★★★★"],
-                ["Ordered in bulk for our sports club. The team was very helpful and the quality of the T-shirts is excellent.", "RV", "Rohit Verma", "★★★★☆"],
-              ].map(([t, a, n, s]) => (
-                <div key={n} className="test-card">
-                  <p className="test-text">{t}</p>
-                  <div className="test-author">
-                    <div className="test-avatar">{a}</div>
-                    <div><div className="test-name">{n}</div><div className="test-stars">{s}</div></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
+
 
         <div className="newsletter">
           <div className="newsletter-inner">
